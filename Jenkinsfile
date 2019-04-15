@@ -4,7 +4,7 @@ pipeline {
     agent {
         docker {
             image 'python:3.7'
-            args '--network ci'
+            args '--network docker-compose_ci'
         }
     }
 
