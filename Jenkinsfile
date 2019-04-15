@@ -39,12 +39,12 @@ pipeline {
             }
         }
 
-       # stage('Mutation tests') {
-       #     steps {
-       #         echo "-=- execute mutation tests -=-"
-       #         sh "cosmic-ray init config.toml jenkins_session && cosmic-ray exec jenkins_session && cr-report jenkins_session.sqlite"
-       #     }
-       # }
+       /* stage('Mutation tests') {
+            steps {
+                echo "-=- execute mutation tests -=-"
+                sh "cosmic-ray init config.toml jenkins_session && cosmic-ray exec jenkins_session && cr-report jenkins_session.sqlite"
+            }
+        } */
 
         stage('Package') {
             steps {
@@ -53,19 +53,19 @@ pipeline {
             }
         }
 
-       # stage('Build Docker image') {
-       #     steps {
-       #         echo "-=- build Docker image -=-"
-       #         sh "docker build -t ${ORG_NAME}/${APP_NAME}:${APP_VERSION} -t ${ORG_NAME}/${APP_NAME}:latest ."
-       #     }
-       # }
+       /* stage('Build Docker image') {
+            steps {
+                echo "-=- build Docker image -=-"
+                sh "docker build -t ${ORG_NAME}/${APP_NAME}:${APP_VERSION} -t ${ORG_NAME}/${APP_NAME}:latest ."
+            }
+        }
 
-       # stage('Run Docker image') {
-       #     steps {
-       #         echo "-=- run Docker image -=-"
-       #         sh "docker run --name ${TEST_CONTAINER_NAME} --detach --rm --network ci --expose 5000 ${ORG_NAME}/${APP_NAME}:latest"
-       #     }
-       # }
+        stage('Run Docker image') {
+            steps {
+                echo "-=- run Docker image -=-"
+                sh "docker run --name ${TEST_CONTAINER_NAME} --detach --rm --network ci --expose 5000 ${ORG_NAME}/${APP_NAME}:latest"
+            }
+        } */
 
         stage('Integration tests') {
             steps {
@@ -74,42 +74,42 @@ pipeline {
             }
         }
 
-       # stage('Performance tests') {
-       #     steps {
-       #         echo "-=- execute performance tests -=-"
-       #         sh "locust -f ./perf_test/locustfile.py --no-web -c 1000 -r 100 --run-time 1m -H http://${TEST_CONTAINER_NAME}:5000/${APP_CONTEXT_ROOT}"
-       #     }
-       # }
+       /* stage('Performance tests') {
+            steps {
+                echo "-=- execute performance tests -=-"
+                sh "locust -f ./perf_test/locustfile.py --no-web -c 1000 -r 100 --run-time 1m -H http://${TEST_CONTAINER_NAME}:5000/${APP_CONTEXT_ROOT}"
+            }
+        }
 
-       # stage('Dependency vulnerability tests') {
-       #     steps {
-       #         echo "-=- run dependency vulnerability tests -=-"
-       #         sh "safety check"
-       #     }
-       # }
+        stage('Dependency vulnerability tests') {
+            steps {
+                echo "-=- run dependency vulnerability tests -=-"
+                sh "safety check"
+            }
+        }
 
-       # stage('Code inspection & quality gate') {
-       #     steps {
-       #         echo "-=- run code inspection & quality gate -=-"
-       #         sh "pylama"
-       #     }
-       # }
+        stage('Code inspection & quality gate') {
+            steps {
+                echo "-=- run code inspection & quality gate -=-"
+                sh "pylama"
+            }
+        }
 
-       # stage('Push Docker image') {
-       #     steps {
-       #         echo "-=- push Docker image -=-"
-       #         withDockerRegistry([ credentialsId: "${ORG_NAME}-docker-hub", url: "" ]) {
-       #             sh "docker push ${ORG_NAME}/${APP_NAME}:${APP_VERSION}"
-       #             sh "docker tag ${ORG_NAME}/${APP_NAME}:${APP_VERSION} ${ORG_NAME}/${APP_NAME}:latest"
-       #         }
-       #     }
-       # }
+        stage('Push Docker image') {
+            steps {
+                echo "-=- push Docker image -=-"
+                withDockerRegistry([ credentialsId: "${ORG_NAME}-docker-hub", url: "" ]) {
+                    sh "docker push ${ORG_NAME}/${APP_NAME}:${APP_VERSION}"
+                    sh "docker tag ${ORG_NAME}/${APP_NAME}:${APP_VERSION} ${ORG_NAME}/${APP_NAME}:latest"
+                }
+            }
+        } */
     }
 
-    #post {
-    #    always {
-    #        echo "-=- remove deployment -=-"
-    #        sh "docker stop ${TEST_CONTAINER_NAME}"
-    #    }
-    #}
+    /*post {
+        always {
+            echo "-=- remove deployment -=-"
+            sh "docker stop ${TEST_CONTAINER_NAME}"
+        }
+    }*/
 }
