@@ -20,8 +20,8 @@ echo "Running Integration tests"
 echo "----------------------------------------------------------------------"
 echo
 mamba -f documentation $INTEGRATION_TESTS
+RETCODE=$?
 
-RETCODE=$NOSE_RETCODE
 sleep 1
 IMAGE_ID=$(docker stop $(docker ps | grep infrabbit | awk '{print $1}'))
 docker rm $IMAGE_ID
