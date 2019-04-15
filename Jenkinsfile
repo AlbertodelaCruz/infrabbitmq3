@@ -35,6 +35,7 @@ pipeline {
             steps {
                 echo "-=- execute unit tests -=-"
                 sh "pip install -r requirements-dev.txt"
+                sh "echo $PWD"
                 sh "dev/unit-tests.sh"
             }
         }
