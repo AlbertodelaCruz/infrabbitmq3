@@ -35,7 +35,7 @@ pipeline {
             steps {
                 echo "-=- execute unit tests -=-"
                 sh "pip install -r requirements-dev.txt"
-                sh "/var/jenkins_home/workspace/infrabbitmq3-pipeline_master/dev/unit-tests.sh"
+                sh "bash dev/unit-tests.sh"
             }
         }
 
