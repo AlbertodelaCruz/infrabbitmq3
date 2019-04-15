@@ -3,7 +3,7 @@
 pipeline {
     agent {
         docker {
-            image 'python:3.7'
+            image 'python:3.6'
             args '-u root --network docker-compose_ci'
         }
     }
@@ -35,7 +35,7 @@ pipeline {
             steps {
                 echo "-=- execute unit tests -=-"
                 sh "pip install -r requirements-dev.txt"
-                sh "bash /var/jenkins_home/workspace/infrabbitmq3-pipeline_master/dev/unit-tests.sh"
+                sh 'mamba -f progress $(find . -maxdepth 2 -type d -name "specs" | grep -v systems)'
             }
         }
 
