@@ -34,7 +34,7 @@ pipeline {
         stage('Unit tests') {
             steps {
                 echo "-=- execute unit tests -=-"
-                sh "pip install -r requeriments-dev.txt"
+                sh "pip install -r requirements-dev.txt"
                 sh "dev/unit-tests.sh"
             }
         }
