@@ -35,8 +35,7 @@ pipeline {
             steps {
                 echo "-=- execute unit tests -=-"
                 sh "pip install -r requirements-dev.txt"
-                sh "echo $OLDPWD"
-                sh "dev/unit-tests.sh"
+                sh "/var/jenkins_home/workspace/infrabbitmq3-pipeline_master/dev/unit-tests.sh"
             }
         }
 
