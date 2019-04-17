@@ -14,6 +14,8 @@ sleep 5
 echo -n "..."
 sleep 5
 echo -n "...."
+sleep 5
+echo -n "....."
 echo "Ready!"
 echo
 echo "Running Integration tests"
