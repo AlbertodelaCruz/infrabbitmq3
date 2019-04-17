@@ -26,5 +26,5 @@ RETCODE=$?
 
 sleep 1
 IMAGE_ID=$(docker stop $(docker ps | grep infrabbit | awk '{print $1}'))
-docker rm $IMAGE_ID
+docker rm -v $IMAGE_ID
 exit $RETCODE
